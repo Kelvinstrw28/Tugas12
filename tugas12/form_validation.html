@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomor 5</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <fieldset>
+                <legend>Form Validation</legend>
+                <table>
+                    <tr>
+                        <td>Nama Pelanggan</td>
+                        <td>:
+                            <input type="text" required="required" id="nama" maxlength="30">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>:
+                            <input type="email" required="required" id="gmail">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jam Keberangkatan</td>
+                        <td>:
+                            <input type="time" required="required" id="waktu">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tujuan Keberangkatan</td>
+                        <td>:
+                            <input type="text" required="required" id="tujuan">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jumlah Tiket</td>
+                        <td>:
+                            <input type="number" required="required" id="tiket" min="1" max="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" id="kirim">Kirim</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+
+    <div id="hasil" style="margin: 2em;"></div>
+
+    <script>
+        const submit = document.getElementById('kirim');
+        const hasil = document.getElementById('hasil');
+
+        function validateEmail(elementValue) {
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return emailPattern.test(elementValue);
+        }
+
+        submit.onclick = () => {
+            let namaPelanggan = document.getElementById('nama').value;
+            let email = document.getElementById('gmail').value;
+            let jamKeberangkatan = document.getElementById('waktu').value;
+            let tujuanKeberangkatan = document.getElementById('tujuan').value;
+            let jumlahTiket = document.getElementById('tiket').value;
+
+
+            if (namaPelanggan === '' && email === '' && jamKeberangkatan === '' && tujuanKeberangkatan === '' && jumlahTiket === '') {
+                alert('Masukkan Data anda terlebih dahulu')
+            }
+            else if (namaPelanggan === '' || namaPelanggan === null) {
+                alert('Masukkan Nama Lengkap anda')
+            }
+            else if (email === '' || email === null) {
+                alert('Masukkan Email anda')
+            }
+            else if (jamKeberangkatan === '' || jamKeberangkatan === null) {
+                alert('Masukkan Jam Keberangkatan anda')
+            }
+            else if (tujuanKeberangkatan === '' || tujuanKeberangkatan === null) {
+                alert('Masukkan Tujuan Keberangkatan anda')
+            }
+            else if (jumlahTiket === '' || jumlahTiket === null) {
+                alert('Masukkan Jumlah Tiket anda');
+            } else if (validateEmail(email) != true) {
+                alert('Format email salah');
+            }
+            else {
+                const output = document.createElement('output');
+                hasil.appendChild(output);
+                output.innerHTML = "<table> <tr> <td> Nama Pelanggan : " + namaPelanggan +
+                    "<tr><td> email : " + email +
+                    "<tr><td> Jam Keberangkatan : " + jamKeberangkatan +
+                    "<tr><td> Tujuan Keberangkatan: " + tujuanKeberangkatan +
+                    "<tr><td> Jumlah Tiket : " + jumlahTiket;
+            }
+        }
+    </script>
+</body>
+
+</html>
